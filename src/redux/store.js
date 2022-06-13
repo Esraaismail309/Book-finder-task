@@ -7,4 +7,3 @@ import mySaga from "./Sagas";
 const sagaMiddleware = createSagaMiddleware()
 export const store = createStore(bookReducer, applyMiddleware(sagaMiddleware))
 sagaMiddleware.run(mySaga)
-// export const store = createStore(bookReducer)

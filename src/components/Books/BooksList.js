@@ -5,8 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, Grid } from '@mui/material';
-import { Box } from '@mui/system';
-
+import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 function BooksList() {
     const books = useSelector((data) => { return data.books.items })
     return books ? (
@@ -14,21 +13,19 @@ function BooksList() {
             <Grid container spacing={3}>
                 {
                     books?.map((book) =>
-                        // console.log(book.volumeInfo.imageLinks.smallThumbnail);
                         <Grid item md={2}>
                             <Card style={{ height: '400px' }}>
                                 <CardActionArea>
                                     <CardMedia
                                         component="img"
-                                        image={book.volumeInfo.imageLinks.thumbnail}
+                                        image={book?.volumeInfo?.imageLinks.thumbnail}
                                         alt={book.volumeInfo.title}
-                                        style={{ width: '100%', height: '200px' }}
+                                        style={{ width: '100%', height: '250px' }}
                                     />
                                     <CardContent>
                                         <Typography gutterBottom variant="h6" component="div">
                                             {book.volumeInfo.title}
                                         </Typography>
-
                                     </CardContent>
                                 </CardActionArea>
                             </Card >
@@ -39,9 +36,12 @@ function BooksList() {
 
 
         </div>
-    ) : <p>
-        Page Not found
-    </p>
+    ) : <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+        <SentimentDissatisfiedIcon sx={{ fontSize: 40 }} />
+        <h3>
+            Please Enter search keyword...
+        </h3>
+    </div>
 
 
 
