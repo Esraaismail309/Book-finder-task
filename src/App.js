@@ -1,13 +1,19 @@
-// import logo from './logo.svg';
 import "./App.css";
 import * as React from "react";
-import ResponsiveAppBar from "./components/shared/Navbar";
+import Navbar from "./components/shared/Navbar";
+import SearchForm from "./components/shared/SearchForm";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
+import BooksList from "./components/Books/BooksList";
 
 function App() {
   return (
     <div className="App">
-      <h2>fhlih</h2>
-      <ResponsiveAppBar />
+      <Navbar />
+      <Provider store={store}>
+        <SearchForm />
+        <BooksList />
+      </Provider>
     </div>
   );
 }
