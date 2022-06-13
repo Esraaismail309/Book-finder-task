@@ -1,4 +1,4 @@
-import { FETCH_BOOKS_REQUEST, FETCH_BOOKS_SUCCESS } from "./BookTypes";
+import { FETCH_BOOKS_SUCCESS } from "./BookTypes";
 
 const initialState = {
     books: [],

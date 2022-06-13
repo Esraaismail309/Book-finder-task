@@ -10,15 +10,17 @@ import { fetchRequest } from '../../redux/book/BookAction';
 function SearchForm() {
     const [userInputSearch, setUserInputSearch] = useState('')
     const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(fetchRequest(userInputSearch))
-    }, [])
 
-    const book = useSelector((data) => { console.log(data.data); })
+    // useEffect(() => {
+    // }, [])
+
+
     const onClickHandler = (e) => {
         e.preventDefault()
-        console.log(userInputSearch);
+        // console.log(userInputSearch);
+        dispatch(fetchRequest(userInputSearch))
     }
+
     return (
         <div >
             <form onSubmit={onClickHandler}>

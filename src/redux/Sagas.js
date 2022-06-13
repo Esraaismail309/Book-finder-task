@@ -1,22 +1,20 @@
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
-import GetBooks from './book/ApiCall'
+import { call, put, takeLatest } from 'redux-saga/effects'
+import getBooks from './book/ApiCall'
 import { FETCH_BOOKS_REQUEST } from './book/BookTypes';
-import { fetchSuccess, fetchFail } from './book/BookAction';
+import { fetchSuccess } from './book/BookAction';
 
-function* handleGetBooks(userInputSearch) {
+function* handleGetBooks({ payload }) {
     try {
-        const response = yield call(GetBooks(userInputSearch));
+        const response = yield call(getBooks, payload);
         const { data } = response
-        if (data) {
-            yield put(fetchSuccess(data));
-        }
-
+        yield put(fetchSuccess(data));
     } catch (error) {
         console.log(error);
     }
 }
 // listening for any redux action to dispatch 
 function* mySaga() {
-    yield takeEvery(FETCH_BOOKS_REQUEST, handleGetBooks);
+    yield takeLatest(FETCH_BOOKS_REQUEST, handleGetBooks);
 }
+
 export default mySaga
